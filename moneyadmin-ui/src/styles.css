@@ -1,0 +1,224 @@
+/* You can add global styles to this file, and also import other style files */
+
+.container {
+  padding: 0 20px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #404C51;
+}
+
+/* Configuração para deixar a cor do link azul e tirar o sublinhado abaixo*/
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+/* Para colocar uma linha abaixo da palavra que for um link e o mouse estiver
+em cima ou estiver com focus*/
+
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+label {
+  font-weight: bold;
+}
+
+/* Margem para o botão */
+
+/* a, button {
+  margin-right: .25em;
+} */
+
+/* padding: 3.5px; Para diminuir o tabanho do td para os botões editar e excluir ficare mas ajustado
+no td
+padding-left: 10px; para criar tipo uma margem para a palavras que ficam dentro do td
+*/
+
+/* body .ui-table .ui-table-tbody>tr>td {
+  padding: 3.5px;
+  padding-left: 10px;
+} */
+
+/* Para ajustar os botões editar e excluir simultaneamente mas para esquerda*/
+
+/* body .ui-button.ui-button-icon-only {
+  margin-left: 2px;
+} */
+
+.col-acoes-content .ui-button {
+  margin: 1px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 755px) {
+  .col-dados-header {
+    width: 60%;
+  }
+  /* Estilização do button-secondary do PrimeNG*/
+  body .ui-button.ui-state-default.ui-button-secondary {
+    border: 1px solid #c8c8c8;
+    ;
+  }
+  .col-dados-content {
+    width: 60%;
+  }
+  .col-valor-header {
+    width: 37%;
+  }
+  .col-valor-content {
+    width: 37%;
+    text-align: right;
+  }
+  .col-data-header {
+    width: 40%;
+  }
+  .col-data-content {
+    width: 40%;
+    text-align: center;
+  }
+  .col-acoes-header {
+    width: 100px;
+  }
+  .col-acoes-content {
+    width: 100px;
+    text-align: center;
+  }
+}
+
+.botao-com-focus:hover {
+  background-color: #116fbf;
+  color: white;
+  outline-offset: 0;
+}
+
+.elemento-com-focus:focus {
+  outline: 0 none;
+  outline-offset: 0px;
+  border-radius: 2.5px 2.5px;
+  box-shadow: 0 0 0 0.1em #8dcdff;
+}
+
+.tira-quebra-linha {
+  white-space: nowrap;
+}
+
+/* Criei uma classe 'form-group', a qual adiciono numa 'div' no html que engloba um 'label' e
+um 'input'. Então adicionei uma regra CSS global para que inputs dentro de '.form-group'
+tenham width de 100%. Esta técnica é interessante pois o uso de classes CSS é largamente
+difundido para este tipo de configuração.
+Lembrando que esta é apenas uma das formas de resolver o problema. */
+
+.form-group hr {
+  width: 100%;
+}
+
+.form-group input {
+  width: 100%;
+}
+
+/* Criei uma classe 'form-group', a qual adiciono numa 'div' no html que engloba um 'label' e
+um 'button'. Então adicionei uma regra CSS global para que o button dentro de '.form-group'
+tenham width de 100%. Esta técnica é interessante pois o uso de classes CSS é largamente
+difundido para este tipo de configuração.
+Lembrando que esta é apenas uma das formas de resolver o problema. */
+
+.form-group button {
+  width: 100%;
+}
+
+body .ui-button:focus {
+  /*Configuração para quando o focus estiver no botão
+    fizemos essa configuração porque quando o pButton era usado dentro da tag <a> o focus
+    ficava diferente então padronizamos para todo tipo de elemento que receber o focus*/
+  outline: 0 none;
+  outline-offset: 0px;
+  box-shadow: 0 0 0 0.2em #8dcdff;
+}
+
+.fonte-negrito {
+  font-weight: bold;
+}
+
+/* Para mudar a cor do botão do primeNg que se chama info que fica na pagina de cadastro de
+lançamento e de pessoa */
+
+body .ui-button.ui-state-default.ui-button-info {
+  background-color: #5bb6e2;
+  border: none;
+}
+
+/* Abaixo é para estilizar a linha que fica vermelha ao redor do elemento inputtext quando sai sem ser
+preenchido corretamente e ele fica invalido*/
+
+body .ui-inputtext.ng-dirty.ng-invalid, body .p-dropdown.ng-dirty.ng-invalid>.ui-dropdown, body p-autocomplete.ng-dirty.ng-invalid>.ui-autocomplete>.ui-inputtext, body p-calendar.ng-dirty.ng-invalid>.ui-calendar>.ui-inputtext, body p-chips.ng-dirty.ng-invalid>.ui-inputtext, body p-inputmask.ng-dirty.ng-invalid>.ui-inputtext, body p-checkbox.ng-dirty.ng-invalid .ui-chkbox-box, body p-radiobutton.ng-dirty.ng-invalid .ui-radiobutton-box, body p-inputswitch.ng-dirty.ng-invalid .ui-inputswitch, body p-listbox.ng-dirty.ng-invalid .ui-inputtext, body p-multiselect.ng-dirty.ng-invalid>.ui-multiselect, body p-spinner.ng-dirty.ng-invalid>.ui-inputtext, body p-selectbutton.ng-dirty.ng-invalid .ui-button, body p-togglebutton.ng-dirty.ng-invalid .ui-button {
+  border: 1px solid #f53e50;
+}
+
+/* Abaixo é o código para estilizar o p-selectButton o botão que fica grudado |Receita | Despesa|
+
+  body .ui-button.ui-widget.ui-state-default.ui-button-text-only.ng-star-inserted {
+    background-color:#fff;
+    color: #53595c;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+  }
+
+   body .ui-button.ui-widget.ui-state-default.ui-button-text-only.ng-star-inserted.ui-state-active {
+    color: #53595c;
+    background-color:rgb(16, 52, 124);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+  }
+
+  body .ui-button.ui-widget.ui-state-default.ui-button-text-only.ng-star-inserted.ng-star-inserted
+  {
+    color: #53595c;
+    background-color:rgb(16, 52, 124);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+  }
+
+  body .ui-button.ui-widget.ui-state-default.ui-button-text-only.ng-star-inserted:hover {
+    background-color:rgb(69, 71, 75);
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+  } */
+
+/* Formas de desativar a barra de rolagem do html o scrollbar
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    ** Usamos o pseudo do elemento para desativa a barra de rolagem dessa forma
+         desativa em toda parte dentro do corpo do html
+  }
+
+  .escondeScroll {
+    overflow: hidden;
+    Essa forma desativa a barra de rolagem onde a classe for colocada
+    exemplo colocamos essa classe dentro do form do arquivo lacamento-cadastro.component.html
+    ele vai desativar todos os scrolls que for gerado dentro do corpo do form deixando
+    apenas o scroll gerado dentro do corpo do html entao se der zoom na pagina vai aparecer
+    o scroll se você clicar dentro do input do canlendario nao irá da scroll porque antes
+    aparecia um scroll rapidamente pelo fato que o calendario aparecia em baixo gerando assim
+    um scroll rapidamente dessa forma não irá mas aparecer porque desabilitamos todos os
+    scrolls dentro do form
+  } */
+
+/* .relatorio-filtro {
+    display: flex;
+    justify-content: space-between;
+  } */
+
+

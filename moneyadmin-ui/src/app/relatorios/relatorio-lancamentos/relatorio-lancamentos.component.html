@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="p-grid">
+    <div class="p-col-12">
+      <h1 class="tema-relatorio">Relatórios de lançamentos por pessoa</h1>
+    </div>
+  </div>
+
+  <form class="p-grid" #formulario="ngForm" (ngSubmit)="gerarRelatorioQuitados()">
+    <label class="label-personalizada">Lançamentos: receitas e despesas quitadas
+    </label>
+
+    <div class="p-col-10">
+      <label style="display:block">Vencimento </label>
+      <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+      required [locale]="ptbr"
+        [(ngModel)]="periodoInicioQuitados" name="vecimentoInicioQuitados"
+        [monthNavigator]="true"
+       [yearNavigator]="true" yearRange="2000:2030" inputId="navigators">
+      </p-calendar>
+
+      <label class="sobe-label"> até </label>
+
+      <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+      required [locale]="ptbr"
+        [(ngModel)]="periodoFimQuitados" name="vecimentoFimQuitados"
+        [monthNavigator]="true"
+       [yearNavigator]="true" yearRange="2000:2030" inputId="navigators">
+      </p-calendar>
+    </div>
+    <div class="p-col-10">
+      <button pButton type="submit" label="Gerar relatório"
+      [disabled]="!formulario.valid" class="da-espaco"></button>
+    </div>
+    </form>
+
+  <div class="p-col-12 form-group" style="margin-bottom: 20px; margin-left:-10px;
+  margin-top: -10px;">
+    <hr>
+  </div>
+
+  <form class="p-grid" #formulario2="ngForm" (ngSubmit)="gerarRelatorioEmAberto()">
+    <label class="label-personalizada">Lançamentos: receitas e despesas em aberto
+    </label>
+    <div class="p-col-10">
+      <label style="display:block">Vencimento </label>
+      <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+      required [locale]="ptbr"
+        [(ngModel)]="periodoInicioEmAberto" name="vecimentoInicioEmAberto"
+        [monthNavigator]="true"
+       [yearNavigator]="true" yearRange="2000:2030" inputId="navigators">
+      </p-calendar>
+
+      <label class="sobe-label"> até </label>
+
+      <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+      required [locale]="ptbr"
+        [(ngModel)]="periodoFimEmAberto" name="vecimentoFimEmAberto"
+        [monthNavigator]="true"
+       [yearNavigator]="true" yearRange="2000:2030" inputId="navigators">
+      </p-calendar>
+    </div>
+
+    <div class="p-col-10">
+      <button pButton type="submit" label="Gerar relatório"
+      [disabled]="!formulario2.valid" class="da-espaco"></button>
+    </div>
+  </form>
+
+</div>

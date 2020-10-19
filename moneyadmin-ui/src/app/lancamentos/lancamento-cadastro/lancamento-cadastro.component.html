@@ -1,0 +1,135 @@
+<div class="container">
+  <form autocomplete="off" (ngSubmit)="salvar()" [formGroup]="formulario">
+    <div class="p-grid">
+
+      <div class="p-col-12">
+        <h1>{{ editando ? 'Edição de' : 'Novo' }} Lançamento</h1>
+      </div>
+
+      <div class="p-col-12">
+        <p-selectButton name="tipo" [options]="tipos" formControlName="tipo"></p-selectButton>
+      </div>
+
+      <div class="p-col-6 p-md-3 ui-fluid">
+        <label>Vencimento</label>
+        <p-calendar name="vencimento" dateFormat="dd/mm/yy" [inline]="false"
+         [readonlyInput]="false" [showIcon]="false"
+          [locale]="ptbr" formControlName="dataVencimento"
+          [monthNavigator]="true"
+          [yearNavigator]="true" yearRange="2000:2030" inputId="navigators">
+        </p-calendar>
+
+        <app-message [control]="formulario.get('dataVencimento')" error="obrigatoriedade"
+          text="Informe uma data de vencimento"></app-message>
+      </div>
+
+      <div class="p-col-6 p-md-3 ui-fluid">
+        <label>{{ formulario.get('tipo').value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
+        <p-calendar name="dataPagamento" dateFormat="dd/mm/yy" [locale]="ptbr"
+        formControlName="dataPagamento"
+        [monthNavigator]="true"
+        [yearNavigator]="true" yearRange="2000:2030" inputId="navigators">
+        </p-calendar>
+      </div>
+
+      <div class="p-col-12 p-md-9 ui-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" name="descricao" formControlName="descricao">
+
+        <app-message [control]="formulario.get('descricao')" error="obrigatoriedade" text="Informe uma descricação">
+        </app-message>
+
+        <app-message [control]="formulario.get('descricao')" error="tamanhoMinimo"
+          text="Mínimo de {{ formulario.get('descricao').errors?.tamanhoMinimo?.tamanho }} caracteres.">
+        </app-message>
+           <!-- Usamos a interrogação acima conhecida como operador elvis na parte de:
+            formulario.get('descricao').errors?. Porque em algum momento quando api
+           trazer as informações do banco de dados pode ser que o campo descricao
+          esteja null entao caso esteja vai encontrar o operador elvis vai dizer entao
+        para por ai não precisa continuar porque é um null então ele não da o erro
+         e o campo fica vazio. Então resumindo é um operador de segurança que agente
+        usa caso encontre uma propiedade nula não da erro mas também não retorna nada.
+        fonte: https://www.algaworks.com/aulas/1582/criando-componente-de-mensagem-de-erro-de-validacao/-->
+      </div>
+
+      <div class="p-col-12 p-md-3 ui-fluid">
+        <label>Valor</label>
+        <input pInputText type="text" placeholder="0,00" name="valor" currencyMask
+          [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }" formControlName="valor">
+
+        <app-message [control]="formulario.get('valor')" error="required" text="Informe uma valor"></app-message>
+      </div>
+
+      <div class="p-col-12 p-md-6 ui-fluid" formGroupName="categoria">
+        <label>Categoria</label>
+        <p-dropdown [options]="categorias" placeholder="Selecione" [filter]="true"
+          emptyFilterMessage="Nenhum resultado encontrado" name="categoria" formControlName="codigo">
+        </p-dropdown>
+
+        <app-message [control]="formulario.get('codigo')" error="required" text="Informe uma categoria">
+        </app-message>
+      </div>
+
+      <div class="p-col-12 p-md-6 ui-fluid" formGroupName="pessoa">
+        <label>Pessoa</label>
+        <p-dropdown [options]="pessoas" placeholder="Selecione" [filter]="true"
+          emptyFilterMessage="Nenhum resultado encontrado" name="pessoa" formControlName="codigo">
+        </p-dropdown>
+        <!--A propiedade [options] acima é por onde vc vai receber os nomes que vão constar no labels e seus
+    respectivos valores esses labels e valores estão no arquivo lancamento-cadastro.component.ts
+    A propiedade [filter]="true" coloca um filtro no nosso dropdown
+    A propiedade emptyFilterMessage="Nenhum resultado encontrado" serve para o campo de pesquisa
+    caso não seja encontrado nenhum nome irá aparacer a mensagem Nenhum resultado encontrado
+    O padrão se não colocar essa propiedade para mudar para para uma frase em português
+    a mensagem vai vim em inglês -->
+
+        <app-message [control]="formulario.get('codigo')" error="required" text="Informe uma pessoa"></app-message>
+      </div>
+
+      <div class="p-col-12 ui-fluid">
+        <label>Observação</label>
+        <textarea name="observacao" pInputTextarea rows="3" formControlName="observacao"></textarea>
+      </div>
+
+      <div class="p-col-6 ui-g-offset-6 p-md-2 ui-md-offset-10 ui-fluid"
+      *ngIf="!formulario.get('anexo').value">
+        <p-fileUpload name="anexo" mode="basic" auto="true" maxFileSize="100000000"
+        chooseLabel="Anexar" accept="image/*,application/*"
+        [url]="urlUploadAnexo"
+        (onBeforeUpload)="antesUploadAnexo($event)"
+        (onUpload)="aoTerminarUploadAnexo($event)"
+        (onError)="erroUpload($event)"
+        [hidden]="uploadEmAndamento">
+        </p-fileUpload>
+
+        <p-progressSpinner [hidden]="!uploadEmAndamento"
+        [style]="{ width: '25px', height: '25px' }">
+        </p-progressSpinner>
+      </div>
+
+      <div class="p-col-12" dir="rtl"
+         *ngIf="formulario.get('anexo').value">
+         <button pButton type="button" class="ui-button-danger"
+          icon="pi pi-times" pTooltip="Remover anexo" tooltipPosition="top"
+          (click)="removerAnexo()"></button>
+
+        <a style="margin-right: 5px;" target="_blank" pTooltip="Baixar anexo" tooltipPosition="top"
+        [href]="formulario.get('urlAnexo').value" >{{ nomeAnexo }}
+        </a>
+      </div>
+
+      <div class="p-col-12">
+        <button pButton type="submit" label="Salvar"
+        [disabled]="!formulario.valid || uploadEmAndamento"> </button>
+        <button pButton type="button" label="Novo" class="ui-button-info"
+         style="margin-left: 6px;" (click)="novo()">
+        </button>
+        <a routerLink="/lancamentos"> Voltar para pesquisa</a>
+      </div>
+    </div>
+    <br><br>
+    <!--Colocamos esses br para não da scroll na hora que clica no
+           input do calendario-->
+  </form>
+
+</div>

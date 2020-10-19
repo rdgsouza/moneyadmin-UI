@@ -1,0 +1,120 @@
+<div class="container">
+  <form autocomplete="off" (ngSubmit)="salvar(formulario)" #formulario="ngForm" >
+
+    <div class="p-grid">
+
+      <div class="p-col-12">
+        <h1>{{ editando ? 'Edição de' : 'Nova' }} Pessoa</h1>
+      </div>
+
+      <div class="p-col-12 ui-fluid">
+        <label style="display: block;">Nome</label>
+        <input pInputText type="text" name="nome" #nome="ngModel"
+        [(ngModel)]="pessoa.nome" required minlength="5">
+
+        <app-message [control]="nome" error="required" text="Informe o nome">
+        </app-message>
+
+        <app-message [control]="nome" error="minlength"
+          text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres.">
+        </app-message>
+      </div>
+
+
+      <div class="p-col-12  p-md-8 ui-fluid">
+        <label style="display: block;">Logradouro</label>
+        <input pInputText type="text" name="logradouro" #logradouro="ngModel"
+        [(ngModel)]="pessoa.endereco.logradouro"
+          required>
+
+        <app-message [control]="logradouro" error="required" text="Informe o logradouro">
+        </app-message>
+      </div>
+
+      <div class="p-col-12  p-md-4 ui-fluid">
+        <label style="display: block;">Número</label>
+        <input pInputText type="text" name="numero" #numero="ngModel"
+        [(ngModel)]="pessoa.endereco.numero" required>
+
+        <app-message [control]="numero" error="required" text="Informe o número">
+        </app-message>
+      </div>
+
+
+      <div class="p-col-12  p-md-4 ui-fluid">
+        <label style="display: block;">Complemento</label>
+        <input pInputText type="text" [(ngModel)]="pessoa.endereco.complemento"
+        name="complemento">
+      </div>
+
+      <div class="p-col-12  p-md-4 ui-fluid">
+        <label style="display: block;">Bairro</label>
+        <input pInputText type="text" name="bairro" #bairro="ngModel"
+        [(ngModel)]="pessoa.endereco.bairro" required>
+
+        <app-message [control]="bairro" error="required" text="Informe o bairro">
+        </app-message>
+      </div>
+
+      <div class="p-col-12  p-md-4 ui-fluid">
+        <label style="display: block;">CEP</label>
+        <p-inputMask mask="99.999-999" name="cep" #cep="ngModel"
+        [(ngModel)]="pessoa.endereco.cep" required>
+        </p-inputMask>
+
+        <app-message [control]="cep" error="required" text="Informe o CEP">
+        </app-message>
+      </div>
+
+      <!-- OBS: O atributo do html spellcheck=false serve para desabilitar o corretor
+         ortográfico sem essa propiedade o padrão do atributo é true -->
+
+      <div class="p-col-12  p-md-6 ui-fluid">
+        <label style="display: block;">Estado</label>
+
+        <p-dropdown placeholder="Selecione..."
+        emptyFilterMessage="Nenhum resultado encontrado" [filter]="true"
+        [options]="estados"
+        [(ngModel)]="estadoSelecionado" name="estadoSelecionado"
+         (onChange)="carregarCidades()"
+         #estado="ngModel" required></p-dropdown>
+
+         <app-message [control]="estado" error="required"
+          text="Informe o estado"></app-message>
+      </div>
+
+            <div class="p-col-12  p-md-6 ui-fluid">
+        <label style="display: block;">Cidade</label>
+
+        <p-dropdown placeholder="Selecione..."
+        emptyFilterMessage="Nenhum resultado encontrado" [filter]="true"
+        [options]="cidades"
+         [(ngModel)]="pessoa.endereco.cidade.codigo" name="cidade"
+         #cidade="ngModel" required
+         [disabled]="!estadoSelecionado"></p-dropdown>
+
+         <app-message [control]="cidade" error="required"
+         text="Informe a cidade"></app-message>
+      </div>
+
+      <div class="p-col-12">
+        <p-panel header="Contatos">
+        <app-pessoa-cadastro-contato [contatos]="pessoa.contatos"></app-pessoa-cadastro-contato>
+        </p-panel>
+      </div>
+
+      <div class="p-col-12">
+        <button pButton type="submit" label="Salvar" [disabled]="!formulario.valid">
+        </button>
+
+        <button pButton type="button" label="Novo" class="ui-button-info"
+        style="margin-left: 6px;"
+          (click)="novo(formulario)"> </button>
+
+        <a routerLink="/pessoas"> Voltar para pesquisa</a>
+      </div>
+    </div>
+  </form>
+
+</div>
+

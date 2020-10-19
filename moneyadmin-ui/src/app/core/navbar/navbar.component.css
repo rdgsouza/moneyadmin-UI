@@ -1,0 +1,72 @@
+.navbar {
+  padding: 6px 0;
+  padding-bottom: 2px;
+  background-color: #1e94d2;
+}
+
+.nevbar-toogle {
+  color: #fff;
+}
+
+/*
+caso queira trocar a cor de fundo do  botão bars essa é a classe
+ .pi.pi-bars{
+  background-color: red;
+}
+*/
+
+.navbar-menu {
+  position: fixed;
+  /*left: 130px; OBS*** Você pode colocar para esquerda se quiser */
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 210px;
+  margin: 0;
+  padding: 0;
+  z-index: 9998;
+  background-color: #3a3633;
+  list-style: none;
+}
+
+.navbar-usuario {
+  padding: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #525151;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Para trocar a cor do botão pi pi-bars e da margem*/
+button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-icon-only {
+  background-color: #1e94d2;
+  border: none;
+  margin-left: -8px;
+  margin-top: 5px;
+}
+
+/* Para tirar o focus do botao pi pi-bars obs: ele tem um focus padrao para tirar adcione as
+propiedades abaixo */
+/* button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-icon-only:focus {
+  outline: 0 none;
+  outline-offset: 0px;
+  box-shadow: 0 0 0 0.0em;
+} */
+
+.navbar-menuitem {
+  padding: 15px;
+}
+
+.navbar-menuitem a {
+  color: #c0bbb7;
+  text-decoration: none;
+}
+
+.navbar-menuitem a:hover {
+  color: #fff;
+}
+
+.navbar-menuitem.ativo {
+  background-color: #494541;
+}

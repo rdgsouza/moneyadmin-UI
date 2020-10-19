@@ -1,0 +1,7 @@
+td a span {
+  color: #333333;
+}
+
+td a span:hover, td a span:focus {
+  text-decoration: underline;
+}

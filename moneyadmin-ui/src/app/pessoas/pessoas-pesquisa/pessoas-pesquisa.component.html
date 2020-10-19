@@ -1,0 +1,88 @@
+<div class="container">
+    <form class="p-grid" autocomplete="off" (ngSubmit)="pesquisar()">
+      <div class="p-col-12">
+        <h1>Pessoas</h1>
+      </div>
+
+      <div class="p-col-12 form-group">
+        <label style="display: block;">Nome</label>
+        <input pInputText type="text" name="nome"
+        [(ngModel)]="filtro.nome" #nome>
+      </div>
+
+      <div class="p-col-12">
+        <button pButton type="submit" label="Pesquisar" appVerificaClick></button>
+      </div>
+    </form>
+
+  <div class="p-grid">
+    <div class="p-col-12">
+      <p-table [value]="pessoas" [paginator]="true" [rows]="filtro.itensPorPagina"
+      [responsive]="true" [lazy]="true" [totalRecords]="totalRegistros"
+      (onLazyLoad)="aoMudarPagina($event)" #tabela>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Nome</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Status</th>
+            <th class="col-acoes-header"></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-pessoa>
+          <tr>
+            <td>
+              <!-- Colocamos class="ui-column-title" para o titulo da coluna
+                ficar responsivo-->
+              <span class="ui-column-title">Nome</span>
+              {{pessoa.nome}}
+            </td>
+            <td>
+              <span class="ui-column-title">Cidade</span>
+              {{pessoa.endereco.cidade?.nome}}
+            </td>
+            <td>
+              <span class="ui-column-title">Estado</span>
+              {{pessoa.endereco.cidade.estado?.nome}}
+            </td>
+            <td>
+              <span class="ui-column-title">Status</span>
+              <a href="javascript:;" [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'"
+               tooltipPosition="top" (click)="alternarStatus(pessoa)">
+              <span [style.color]="pessoa.ativo ? '#1e94d2' : '#ea3c2c' ">
+                  <!-- Como colocar uma cor
+                   alternado com a condição se for inativo a cor vai ser vermelha se for inativo
+                 vai ser azul-->
+                  {{ pessoa.ativo ? 'Ativo' : 'Inativo'}}
+                </span>
+              </a>
+            </td>
+            <td class="col-acoes-content" style="padding:3.5px;">
+              <a class="botao-com-focus" [routerLink]="['/pessoas', pessoa.codigo]"
+              href="#" pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top">
+              </a>
+              <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+               style="margin-left: 6px;" (click)="confirmarExclusao(pessoa)">
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="5">
+              Nenhuma pessoa encontada
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <div class="p-col-12">
+      <a routerLink="/pessoas/nova" class="botao-com-focus" href="#"
+      pButton label="Nova Pessoa"></a>
+    </div>
+
+  </div>
+</div>

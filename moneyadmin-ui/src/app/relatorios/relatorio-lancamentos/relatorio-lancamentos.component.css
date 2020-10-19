@@ -1,0 +1,41 @@
+/* Pergunta feita a Fagner sobre espaço */
+
+/* Fagner! Na página html do meu relatório eu queria um espaço maior entre o campo input de data e o botão gerar do relatório eu tenho eu usei a tag <br> é uma má pratica usar a tag <br> para separar elementos se sim qual seria a forma correta de colocar essa distancia entre um elemento e outro?
+Resposta: Fagner Lima TUTOR
+Rodrigo, a maneira mais correta de se fazer isso é com uso de CSS. Nesse caso, você poderia usar a propriedade "margin-bottom" (margem inferior). Segue exemplo:
+<input style="margin-bottom: 10px"> */
+
+/* Quando a tela estiver em 420px o tamanho do h1 que é onde se encontra a classe
+.tema-relatorio vai ter o manho de 18px*/
+@media (max-width: 770px) {
+  .tema-relatorio {
+    font-size: 20px;
+  }
+}
+
+/* Quando a tela estiver com o minimo de 324 a label até vai subir para cima do imput
+de calendar se não fizer isso os inputs ficam grudados */
+@media (max-width: 324px) {
+  .sobe-label {
+    display: block;
+  }
+}
+
+.tema-relatorio {
+  margin-bottom: 35px;
+  margin-top: 40px;
+}
+
+/* Para colcar em negrito e da cor, margens e espaçamento nas labels */
+.label-personalizada {
+  font-weight: bold;
+  color: #2081cc;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.da-espaco {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}

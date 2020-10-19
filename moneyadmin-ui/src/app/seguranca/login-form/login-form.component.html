@@ -1,0 +1,31 @@
+<div class="container">
+
+  <div class="p-grid">
+
+    <div class="p-col-12 ui-fluid">
+      <!-- <label class="tema">MoneyAdmin</label> -->
+      <!-- <img src='src/assets/moneyadmin-logo-1.png'> -->
+      <img class="logo" alt="MoneyAdmin-logo" src="./assets/moneyadmin-logo-1.png">
+      <form class="estilo-form" #formulario="ngForm" autocomplete="off">
+        <!-- OBS: Criei um estilo css para o form do login no arquivo login-form.component.css
+     caso queira usar a classe coloque a classe estilo-form dentro do form -->
+        <div class="p-col-12">
+          <h1>Login</h1>
+        </div>
+
+        <div class="p-col-12 form-group">
+          <input pInputText type="email" name="usuario" placeholder="E-mail" ngModel required #usuario>
+        </div>
+
+        <div class="p-col-12 form-group">
+          <input pInputText type="password" name="senha" placeholder="Senha" ngModel required #senha>
+        </div>
+
+        <div class="p-col-12 form-group">
+          <button pButton type="submit" label="Login" [disabled]="!formulario.valid"
+            (click)="login(usuario.value, senha.value); senha.value = '';"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

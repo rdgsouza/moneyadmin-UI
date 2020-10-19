@@ -1,0 +1,61 @@
+/* Criamos essas classes para configura a tela de login em cor tamanho etc.*/
+
+body {
+  background-color: #f0f2f5;
+}
+
+.tema {
+  color: #2a81f2;
+  position: relative;
+  left: 44px;
+  top: 30px;
+  font-size: 40px;
+}
+
+.logo {
+  background-image: url('src/assets/moneyadmin-logo-1.png');
+  background-position: center;
+  position: relative;
+  top: 40px;
+}
+
+@media (max-width: 495px) {
+  .logo {
+    position: relative;
+    top: 30px;
+    left: -57px;
+  }
+}
+
+.container {
+  padding: 0;
+  max-width: 80%;
+  /* O max-width: 80%; tem que ficar aqui com o tamnho em porcentagem porque ele se basea
+  no .container do arquivo style.css se não coloca com porcentagem na hora vc testa para telas
+  de celular vc vai ver que ele nao fica responsivo */
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 20px;
+}
+
+@media (min-width: 485px) {
+  .container {
+    max-width: 400px;
+  }
+}
+
+.estilo-form {
+  /* margin: auto; */
+  position: relative;
+  width: 135%;
+  margin-top: 20%;
+  margin-left: -19%;
+  padding: 18px;
+  padding-bottom: 70px;
+  background-color: rgb(255, 255, 255);
+  outline: 0 none;
+  outline-offset: 0px;
+  box-shadow: 2px 5px 10px #a9b8c4;
+  border: 0.px;
+  border-radius: 20px 20px 20px 20px;
+}
